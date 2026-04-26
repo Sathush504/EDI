@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+prophet
+plotly
+joblib
+
+reflex==0.9.0
+openpyxl
+faiss-cpu
+sentence-transformers
+langchain
