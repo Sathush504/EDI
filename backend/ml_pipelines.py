@@ -95,6 +95,7 @@ def train_forecast(transactions):
     
     joblib.dump(model, 'models/prophet.joblib')
     forecast.to_csv('data/forecast_90d.csv', index=False)
+    daily.to_csv('data/daily_revenue.csv', index=False)
     return forecast
 
 if __name__ == "__main__":
