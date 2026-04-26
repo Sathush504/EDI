@@ -1,8 +1,8 @@
 # Enterprise Decision Intelligence Platform (EIDAP)
 
-![EIDAP Banner](https://img.shields.io/badge/Status-Deploy_Ready-success) ![Python](https://img.shields.io/badge/Python-3.10%2B-blue) ![Reflex](https://img.shields.io/badge/Framework-Reflex-indigo)
+![EIDAP Banner](https://img.shields.io/badge/Status-Live-success) ![Python](https://img.shields.io/badge/Python-3.10%2B-blue) ![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B)
 
-A premium full-stack, AI-powered enterprise analytics SaaS platform built entirely in Python using **Reflex**. 
+A premium, AI-powered enterprise analytics SaaS platform built entirely in Python using **Streamlit**. 
 
 This platform leverages the real-world **UCI Online Retail Dataset** to demonstrate end-to-end Machine Learning pipelines including Customer Segmentation, Churn Prediction, Demand Forecasting, Customer Lifetime Value (CLV) scoring, and an interactive Retrieval-Augmented Generation (RAG) AI Assistant.
 
@@ -12,19 +12,19 @@ This platform leverages the real-world **UCI Online Retail Dataset** to demonstr
 - **Sales Forecasting**: Facebook Prophet time-series models to forecast 90-day demand.
 - **CLV Prediction**: Regression models estimating 12-month future value.
 - **AI Business Assistant**: RAG engine powered by `FAISS` and `SentenceTransformers` allowing you to converse with your business data.
-- **Responsive Dashboard**: Complete Python-only reactive frontend with multi-page routing and premium glassmorphism UI.
+- **Responsive Dashboard**: Beautiful, multi-page data application using native Streamlit routing and Plotly charting with a custom dark theme.
 
 ## Architecture & Tech Stack
-- **Frontend & Backend**: Reflex (Python)
+- **Frontend & App Framework**: Streamlit
 - **Machine Learning**: Scikit-Learn (Random Forest, KMeans), Prophet (Time-series Forecasting)
 - **Vector Search Engine**: FAISS (Local dense vector retrieval)
 - **Embeddings**: SentenceTransformers (`all-MiniLM-L6-v2`)
 
 ---
 
-## 🚀 Setup Instructions
+## 🚀 Running Locally
 
-Follow these steps to run the application natively:
+Follow these steps to run the application on your own machine:
 
 ### 1. Install Dependencies
 Ensure you have Python 3.10+ installed.
@@ -34,47 +34,30 @@ source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run the Data & ML Pipeline
-Before starting the application, you must download the real dataset and train the machine learning models. 
+### 2. Start the Application
+The application is pre-packaged with generated intelligence data so you can launch the dashboard immediately.
 ```bash
-python run_pipelines.py
+streamlit run streamlit_app.py
 ```
-**What this does:**
-1. Downloads the **UCI Online Retail Dataset**.
-2. Cleans the data and calculates RFM scores.
-3. Trains and serializes the Machine Learning models into the `/models` directory.
-4. Synthesizes a knowledge base and builds a local `FAISS` vector index in `/data`.
+This will automatically open the dashboard in your browser at `http://localhost:8501`.
 
-### 3. Start the Reflex Application
-Once the pipeline completes, launch the platform:
-```bash
-reflex run
-```
-
-### 4. Access the Dashboard
-Navigate to **http://localhost:3000** to explore the platform.
+*(Optional: If you wish to regenerate the data from scratch or retrain the models, you can run `python run_pipelines.py`)*
 
 ---
 
 ## 🌍 Production Deployment
 
-The easiest way to deploy this full-stack application to the internet is using Reflex's native hosting service, or a PaaS like Render.
+This application is architected as a lightweight, single-file Streamlit app, making deployment incredibly simple.
 
-### Option 1: Reflex Deploy (Easiest)
-Reflex provides a managed hosting service that handles both the Python backend and the frontend automatically.
-```bash
-reflex login
-reflex deploy
-```
+### Deploying to Streamlit Community Cloud (Recommended)
+1. Push this repository to your GitHub account.
+2. Log into [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Click **New app**.
+4. Select your GitHub repository.
+5. Set the **Main file path** to `streamlit_app.py`.
+6. Click **Deploy!**
 
-### Option 2: Render (GitHub Integration)
-1. Push this repository to GitHub.
-2. Log into [Render](https://render.com/) and create a new **Web Service**.
-3. Connect your GitHub repository.
-4. Set the **Build Command**: `pip install -r requirements.txt && python run_pipelines.py`
-5. Set the **Start Command**: `reflex run --env prod`
-
-*(Note: Because this application uses Machine Learning models and FAISS, the deployment environment needs at least 1GB of RAM).*
+*(Note: Because the AI Assistant loads ML weights into memory, the very first boot of the deployed app may take 15-20 seconds.)*
 
 ---
 
